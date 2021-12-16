@@ -22,6 +22,6 @@ public class PlayerChangedWorldListener implements Listener {
         final Player player = event.getPlayer();
         final String worldName = player.getWorld().getName();
 
-        swiftSidebar.setLines(player, swiftSidebarConfig.getLines(worldName));
+        //swiftSidebar.setLines(player, swiftSidebarConfig.getLines(worldName));
     }
 }

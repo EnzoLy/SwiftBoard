@@ -25,7 +25,7 @@ public class PlayerQuitListener implements Listener {
         final Player player = event.getPlayer();
 
         scoreboardManager.remove(player);
-        swiftSidebar.clearLines(player);
+        //swiftSidebar.clearLines(player);
         swiftNametag.removePlayer(player);
     }
 }

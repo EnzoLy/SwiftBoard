@@ -17,14 +17,20 @@ import dev._2lstudios.swiftboard.swift.config.SwiftNametagConfig;
 public class SwiftNametag implements Runnable {
     private final Plugin plugin;
     private final ScoreboardManager scoreboardManager;
-    private final SwiftNametagConfig swiftNametagConfig;
     private final Map<Player, Nametag> nametags = new ConcurrentHashMap<>();
+    private NameTagProvider nameTagProvider;
 
-    public SwiftNametag(final Plugin plugin, final ScoreboardManager scoreboardManager,
-            final SwiftNametagConfig swiftNametagConfig) {
+    public SwiftNametag(final Plugin plugin, final ScoreboardManager scoreboardManager) {
         this.plugin = plugin;
         this.scoreboardManager = scoreboardManager;
-        this.swiftNametagConfig = swiftNametagConfig;
+    }
+
+    public void setNameTagProvider(NameTagProvider nameTagProvider) {
+        this.nameTagProvider = nameTagProvider;
+    }
+
+    public NameTagProvider getNameTagProvider() {
+        return nameTagProvider;
     }
 
     private String setPlaceholders(final Player player, final String string) {
@@ -32,11 +38,11 @@ public class SwiftNametag implements Runnable {
     }
 
     public String getPrefix(final Player player) {
-        return setPlaceholders(player, swiftNametagConfig.getPrefix());
+        return setPlaceholders(player, nameTagProvider.getPrefix(player));
     }
 
     public String getSuffix(final Player player) {
-        return setPlaceholders(player, swiftNametagConfig.getSuffix());
+        return setPlaceholders(player, nameTagProvider.getSuffix(player));
     }
 
     public void removePlayer(final Player player) {

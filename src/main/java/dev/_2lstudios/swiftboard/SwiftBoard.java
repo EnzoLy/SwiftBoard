@@ -67,14 +67,10 @@ public class SwiftBoard extends JavaPlugin {
         scoreboardManager = new ScoreboardManager();
         swiftHealth = new SwiftHealth(this, scoreboardManager, swiftHealthConfig);
         swiftSidebar = new SwiftSidebar(this, scoreboardManager);
-        swiftNametag = new SwiftNametag(this, scoreboardManager, swiftNametagConfig);
+        swiftNametag = new SwiftNametag(this, scoreboardManager);
 
         for (final Player player : getServer().getOnlinePlayers()) {
             scoreboardManager.create(player);
-
-            if (swiftSidebarConfig.isEnabled()) {
-                swiftSidebar.setLines(player, swiftSidebarConfig.getLines(player.getWorld().getName()));
-            }
     
             try {
                 if (swiftNametagConfig.isEnabled()) {
